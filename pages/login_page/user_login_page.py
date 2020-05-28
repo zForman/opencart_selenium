@@ -15,12 +15,6 @@ class UserLoginPage(BasePage):
     _confirm_logout = (By.XPATH, "//a[@class='btn btn-primary']")
     _my_orders_title = (By.XPATH, "//h2[contains(text(),'My Orders')]")
 
-    def _enter_username(self, email):
-        return self.find_element(locator=self._user_email).send_keys(email)
-
-    def _enter_password(self, password):
-        return self.find_element(locator=self._password).send_keys(password)
-
     def get_my_orders_title(self):
         return self.find_element(locator=self._my_orders_title)
 
@@ -42,8 +36,8 @@ class UserLoginPage(BasePage):
     def login(self, useremail, password):
         self.click_on_my_account()
         self.click_on_login()
-        self._enter_username(useremail)
-        self._enter_password(password)
+        self.input_text(self._user_email, useremail)
+        self.input_text(self._password, password)
         self.click_login_button()
 
     def logout(self):
