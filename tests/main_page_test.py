@@ -1,5 +1,6 @@
-import time
 from pages.home.main_home_page import HomePage
+from pages.goods.clean_cart import CleanCart
+import time
 
 
 def test_num_el_in_feature_section(one_time_setup):
@@ -10,9 +11,12 @@ def test_num_el_in_feature_section(one_time_setup):
 
 def test_add_item_in_cart(one_time_setup):
     page = HomePage(one_time_setup)
+    cart = CleanCart(one_time_setup)
     page.add_item_in_cart()
-    result = page.check_is_item_in_cart()
-    assert '$0.00' not in result.text
+    time.sleep(1)
+    assert '0 item(s)' not in page.check_is_item_in_cart()
+    cart.cleaan_cart()
+    time.sleep(1)
 
 
 def test_wish_list(one_time_setup):
