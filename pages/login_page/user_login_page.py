@@ -33,7 +33,7 @@ class UserLoginPage(BasePage):
     def click_on_confirm_logout(self):
         return self.click(locator=self._confirm_logout)
 
-    def login(self, useremail, password):
+    def login(self, useremail='user@mail.com', password='1234'):
         self.click_on_my_account()
         self.click_on_login()
         self.input_text(self._user_email, useremail)
