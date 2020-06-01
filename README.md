@@ -14,7 +14,7 @@ Change opencart ports (in docker-compose.yml):
 
 To run test:
 
-`pytest tests/test_opencart_page.py --base_url http://localhost:8046 --browser Chrome -vs`
+`pytest --base_url http://localhost:8046 --browser chrome -vs`
 
 
 Install packages:
