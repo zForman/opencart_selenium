@@ -20,20 +20,19 @@ class BasePage:
         element = None
         try:
             element = self.wait.until(EC.presence_of_element_located(locator))
-            self.log.info('Element found with locator:', locator)
+            self.log.info(f'Element found with locator: {str(locator[1])}')
         except NoSuchElementException:
             self.log.info('Element not found with locator:', locator)
         return element
 
     def find_elements(self, locator):
-        return self.wait.until(EC.presence_of_all_elements_located(locator),
-                               message=f"Can't find elements by locator {locator}")
-
-    # def execute_js(self, locator):
-    #     return self.wait.until(EC.presence_of_element_located(locator),
-    #                            message=f'Can\'t find elements by locator {locator}')
-
-    # def execute_js(self, value):
+        element = None
+        try:
+            element = self.wait.until(EC.presence_of_all_elements_located(locator))
+            self.log.info(f'Element found with locator: {str(locator[1])}')
+        except NoSuchElementException:
+            self.log.info('Element not found with locator:', locator)
+        return element
 
     def open(self):
         return self.driver.get(self.base_url)
@@ -42,7 +41,12 @@ class BasePage:
         return self.driver.title
 
     def click(self, locator):
-        element = self.wait.until(EC.presence_of_element_located(locator))
+        element = None
+        try:
+            element = self.wait.until(EC.presence_of_element_located(locator))
+            self.log.info(f'Element found with locator: {str(locator[1])} and clicked')
+        except NoSuchElementException:
+            self.log.info('Element not found with locator:', locator)
         return element.click()
 
     def input_text(self, locator, value):

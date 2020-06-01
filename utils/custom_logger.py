@@ -10,7 +10,7 @@ def custom_logger(log_level=logging.DEBUG):
     # By default, log all events
     logger.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler('{0}.log'.format(logger_name), mode='w+')
+    file_handler = logging.FileHandler('{0}.log'.format(logger_name), mode='a')
     # file_handler = logging.FileHandler('automation.log', mode='a')
     file_handler.setLevel(log_level)
 
