@@ -4,7 +4,7 @@ To run OpenCart in Docker:
 
 `$ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-opencart/master/docker-compose.yml > docker-compose.yml`
 
-Change opencart to ports:
+Change opencart ports:
       
       ports:
       - '8046:80'
