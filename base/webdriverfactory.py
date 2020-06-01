@@ -3,11 +3,11 @@ import logging
 
 
 class WebDriverFactory:
-    def __init__(self, browser):
+    def __init__(self, browser, base_url):
         self.browser = browser
+        self.base_url = base_url
 
     def get_webdriver(self):
-        base_url = 'http://localhost:8046/'
 
         if self.browser == 'firefox':
             options = webdriver.FirefoxOptions()
@@ -22,5 +22,5 @@ class WebDriverFactory:
 
         driver.implicitly_wait(4)
         driver.maximize_window()
-        driver.get(base_url)
+        driver.get(self.base_url)
         return driver
