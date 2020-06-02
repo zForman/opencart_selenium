@@ -5,16 +5,17 @@ import utils.custom_logger as cl
 import logging
 
 
-BASE_URL = 'http://localhost:8046/index.php'
+# BASE_URL = 'http://localhost:8046/index.php'
 
 
 class BasePage:
     log = cl.custom_logger(logging.INFO)
 
     def __init__(self, driver, wait=3):
+        driver, base_url = driver
         self.driver = driver
         self.wait = WebDriverWait(driver, wait)
-        self.base_url = BASE_URL
+        self.base_url = base_url
 
     def find_element(self, locator):
         element = None

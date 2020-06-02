@@ -1,5 +1,6 @@
 import inspect
 import logging
+from pathlib import Path
 
 
 def custom_logger(log_level=logging.DEBUG):
@@ -10,7 +11,8 @@ def custom_logger(log_level=logging.DEBUG):
     # By default, log all events
     logger.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler('{0}.log'.format(logger_name), mode='a')
+    Path("./tests/logs").mkdir(parents=True, exist_ok=True)
+    file_handler = logging.FileHandler(f'./tests/logs/{logger_name}.log', mode='a+')
     # file_handler = logging.FileHandler('automation.log', mode='a')
     file_handler.setLevel(log_level)
 

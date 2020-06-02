@@ -6,7 +6,7 @@ from base.webdriverfactory import WebDriverFactory
 def one_time_setup(request, browser, base_url):
     wdf = WebDriverFactory(browser, base_url)
     driver = wdf.get_webdriver()
-    yield driver
+    yield driver, base_url
     driver.quit()
 
 
@@ -24,9 +24,9 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def browser(request):
-    return request.config.getoption('--browser')
+    return request.config.getoption('--browser').lower()
 
 
 @pytest.fixture
 def base_url(request):
-    return request.config.getoption('--base_url')
+    return request.config.getoption('--base_url').lower()
