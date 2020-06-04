@@ -18,7 +18,7 @@ def pytest_addoption(parser):
 
     parser.addoption(
         '--base_url',
-        default='http://localhost:8046',
+        default='http://localhost:80',
     )
 
 

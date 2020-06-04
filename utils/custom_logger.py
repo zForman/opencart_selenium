@@ -12,7 +12,8 @@ def custom_logger(log_level=logging.DEBUG):
     logger.setLevel(logging.DEBUG)
 
     Path("./tests/logs").mkdir(parents=True, exist_ok=True)
-    file_handler = logging.FileHandler(f'./tests/logs/{logger_name}.log', mode='a+')
+    logger_name = f'./tests/logs/{logger_name.lower()}.log'
+    file_handler = logging.FileHandler(logger_name.lower(), mode='a+')
     # file_handler = logging.FileHandler('automation.log', mode='a')
     file_handler.setLevel(log_level)
 
