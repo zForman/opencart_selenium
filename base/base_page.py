@@ -5,9 +5,6 @@ import utils.custom_logger as cl
 import logging
 
 
-# BASE_URL = 'http://localhost:8046/index.php'
-
-
 class BasePage:
     log = cl.custom_logger(logging.INFO)
 
@@ -21,18 +18,18 @@ class BasePage:
         element = None
         try:
             element = self.wait.until(EC.presence_of_element_located(locator))
-            self.log.info(f'Element found with locator: {str(locator[1])}')
+            self.log.info(f'Element with locator: {str(locator[1])} found ')
         except NoSuchElementException:
-            self.log.info('Element not found with locator:', locator)
+            self.log.info(f'Element with {locator} not found')
         return element
 
     def find_elements(self, locator):
         element = None
         try:
             element = self.wait.until(EC.presence_of_all_elements_located(locator))
-            self.log.info(f'Element found with locator: {str(locator[1])}')
+            self.log.info(f'Element with locator: {str(locator[1])} found ')
         except NoSuchElementException:
-            self.log.info('Element not found with locator:', locator)
+            self.log.info(f'Element with {locator} not found')
         return element
 
     def open(self):
@@ -45,12 +42,18 @@ class BasePage:
         element = None
         try:
             element = self.wait.until(EC.presence_of_element_located(locator))
-            self.log.info(f'Element found with locator: {str(locator[1])} and clicked')
+            self.log.info(f'Element with locator: {str(locator[1])} found and clicked')
         except NoSuchElementException:
-            self.log.info('Element not found with locator:', locator)
+            self.log.info(f'Element with {locator} not found')
         return element.click()
 
     def input_text(self, locator, value):
-        get_field = self.driver.find_element(*locator)
-        get_field.clear()
-        get_field.send_keys(value)
+        print('\nlocator', locator[0], locator[1])
+        print('*locator', *locator)
+        try:
+            get_field = self.driver.find_element(*locator)
+            get_field.clear()
+            get_field.send_keys(value)
+            self.log.info(f'Element {locator} found, and value: {value} passed')
+        except NoSuchElementException:
+            self.log.info(f'Element with {locator} not found, and value: {value} not passed')
