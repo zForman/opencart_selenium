@@ -10,7 +10,11 @@ Run container:
 
 To run test:
 
-`pytest --base_url http://localhost:8046 --browser chrome -vs`
+`pytest --base_url http://localhost:80 --browser chrome -vs`
+
+To run test for admin login:
+
+`pytest tests/admin/login_test.py --base_url https://127.0.0.1/admin --browser Chrome -vs`
 
 
 Install packages:
